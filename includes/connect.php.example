@@ -1,0 +1,17 @@
+<?php
+session_start();
+date_default_timezone_set('Asia/Kolkata');
+
+// Replace these values with your database credentials
+$db_host = "localhost";
+$db_user = "root";
+$db_pass = "YOUR_PASSWORD_HERE";
+$db_name = "student_result_db";
+$db_port = 3306;
+
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name, $db_port);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>

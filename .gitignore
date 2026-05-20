@@ -1,0 +1,9 @@
+# IDE / Editors
+.vscode/
+
+# Local configuration & environment
+includes/connect.php
+
+# Temp / Scratch files
+scratch/
+*.log
