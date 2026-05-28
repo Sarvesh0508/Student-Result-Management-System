@@ -1,14 +1,7 @@
+SET FOREIGN_KEY_CHECKS = 0;
 -- Student Result Management System Database Schema
 -- Generated automatically on 2026-05-28 13:37:21
 
-CREATE DATABASE IF NOT EXISTS `student_result_db`;
-USE `student_result_db`;
-
-DROP TABLE IF EXISTS `backlog_students`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `backlog_students` AS select `s`.`student_id` AS `student_id`,`s`.`name` AS `name`,`r`.`course_id` AS `course_id` from (`student` `s` join `result` `r` on((`s`.`student_id` = `r`.`student_id`))) where (`r`.`backlog_status` = 'ACTIVE');
-
--- Dumping data for table `backlog_students`
-INSERT INTO `backlog_students` (`student_id`, `name`, `course_id`) VALUES ('5', 'Arjun Patel', '104');
 
 DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
@@ -180,20 +173,6 @@ INSERT INTO `student` (`student_id`, `name`, `department`, `year`, `email`, `mob
 INSERT INTO `student` (`student_id`, `name`, `department`, `year`, `email`, `mobile_number`, `batch`, `register_number`, `is_detained`) VALUES ('6', 'Kiran Reddy', 'CSE', '1', 'kiran@gmail.com', '9876543220', '2024', 'RA2411003012166', '0');
 INSERT INTO `student` (`student_id`, `name`, `department`, `year`, `email`, `mobile_number`, `batch`, `register_number`, `is_detained`) VALUES ('7', 'Nithin Reddy', 'CSE', '1', 'nithin@gmail.com', '9876543216', '2024', 'RA2411003012167', '0');
 
-DROP TABLE IF EXISTS `student_result_view`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `student_result_view` AS select `s`.`student_id` AS `student_id`,`s`.`name` AS `name`,`c`.`course_title` AS `course_title`,`r`.`marks` AS `marks`,`r`.`grade` AS `grade` from ((`student` `s` join `result` `r` on((`s`.`student_id` = `r`.`student_id`))) join `course` `c` on((`r`.`course_id` = `c`.`course_id`)));
-
--- Dumping data for table `student_result_view`
-INSERT INTO `student_result_view` (`student_id`, `name`, `course_title`, `marks`, `grade`) VALUES ('1', 'Rahul Sharma', 'Database Management System', '85.00', 'O');
-INSERT INTO `student_result_view` (`student_id`, `name`, `course_title`, `marks`, `grade`) VALUES ('1', 'Rahul Sharma', 'Data Structures', '85.00', 'A');
-INSERT INTO `student_result_view` (`student_id`, `name`, `course_title`, `marks`, `grade`) VALUES ('1', 'Rahul Sharma', 'Engineering Mathematics I', '80.00', 'A');
-INSERT INTO `student_result_view` (`student_id`, `name`, `course_title`, `marks`, `grade`) VALUES ('1', 'Rahul Sharma', 'Engineering Physics', '60.00', 'B');
-INSERT INTO `student_result_view` (`student_id`, `name`, `course_title`, `marks`, `grade`) VALUES ('1', 'Rahul Sharma', 'Problem Solving & C', '77.00', 'A');
-INSERT INTO `student_result_view` (`student_id`, `name`, `course_title`, `marks`, `grade`) VALUES ('2', 'Anita Verma', 'Database Management System', '70.00', 'B');
-INSERT INTO `student_result_view` (`student_id`, `name`, `course_title`, `marks`, `grade`) VALUES ('2', 'Anita Verma', 'Data Structures', '40.00', 'F');
-INSERT INTO `student_result_view` (`student_id`, `name`, `course_title`, `marks`, `grade`) VALUES ('2', 'Anita Verma', 'Data Structures', '65.00', 'B');
-INSERT INTO `student_result_view` (`student_id`, `name`, `course_title`, `marks`, `grade`) VALUES ('2', 'Anita Verma', 'Engineering Mathematics I', '78.00', 'A');
-INSERT INTO `student_result_view` (`student_id`, `name`, `course_title`, `marks`, `grade`) VALUES ('2', 'Anita Verma', 'Engineering Physics', '65.00', 'B');
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -216,4 +195,6 @@ INSERT INTO `users` (`id`, `email`, `password`, `role`, `security_question`, `an
 INSERT INTO `users` (`id`, `email`, `password`, `role`, `security_question`, `answer`) VALUES ('8', 'kiran@gmail.com', '1234', 'student', 'Your pet name?', 'tom');
 INSERT INTO `users` (`id`, `email`, `password`, `role`, `security_question`, `answer`) VALUES ('10', 'nithin@gmail.com', '1234', 'student', 'Your pet name?', 'tom');
 INSERT INTO `users` (`id`, `email`, `password`, `role`, `security_question`, `answer`) VALUES ('14', 'teacher@gmail.com', 'admin', 'teacher', NULL, NULL);
+
+SET FOREIGN_KEY_CHECKS = 1;
 
